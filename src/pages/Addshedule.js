@@ -58,16 +58,12 @@ export default function Addshedule() {
   }
   return (
     <div>
-      <div >
-      </div>
-
-      <div style={{ paddingLeft: '5vh', paddingTop: '1vh', paddingBottom: '5vh', paddingRight: '5vh' }}>
-
-        <h1>Shedule Form</h1>
-
-        <Card style={{
-        }} >
-          <Card.Body>
+      <br/><br/><br/>
+      <div style={{ paddingLeft: '5vh', paddingTop: '1vh', paddingBottom: '5vh', paddingRight: '5vh',boxShadow: "0px 0px 12px rgba(0, 0, 0, 0.25)" }}>
+      <center>
+        <h1 style={{fontWeight:"bold",paddingTop: "2vh"}}>Create Shedule</h1>
+        <hr></hr>
+        </center>
 
 
             <Form onSubmit={sendData}>
@@ -79,54 +75,48 @@ export default function Addshedule() {
                   <Form.Label>Route No:</Form.Label>
                   <Form.Control type="text" name='Routeno'
                     onChange={(e) => setrouteno(e.target.value)}
-                    placeholder=" Enter Route No  .."  required/>
+                    placeholder=" Enter Route No"  required/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label >From : </Form.Label>
+                  <Form.Label >Start: </Form.Label>
                   <Form.Control type="text"
                     onChange={(e) => setfrom(e.target.value)}
 
-                    placeholder=" From .." />
+                    placeholder="Start" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label >To : </Form.Label>
+                  <Form.Label >End: </Form.Label>
                   <Form.Control type="text"
                     onChange={(e) => setto(e.target.value)}
 
-                    placeholder=" To .."  required/>
+                    placeholder="End"  required/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label >Time : </Form.Label>
-                  <Form.Control type="text"
+                  <Form.Control type="time"
                     onChange={(e) => settime(e.target.value)}
-                    placeholder=" Time  .." required/>
+                    placeholder=" Time" required/>
                 </Form.Group>
 
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label >No Of Bus: </Form.Label>
-                  <Form.Control type="text"
+                  <Form.Label >No Of Buses: </Form.Label>
+                  <Form.Control type="number"
                     onChange={(e) => setnoofbus(e.target.value)}
 
-                    placeholder=" Enter No Of Buses .."  required/>
+                    placeholder=" Enter No Of Buses"  required/>
                 </Form.Group>
-
-
-
-
               </div>
-
+              <br/>
               <div style={{ paddingLeft: "40%" }}>
-                <Button type="submit" variant="danger">~ ~ Save ~ ~</Button>{' '} {' '}<Button variant="dark" onClick={refreshPage}>- Clear -</Button>
+                <Button type="submit" variant="primary">Add Shedule</Button>{' '} {' '}
+                <Button variant="dark" onClick={refreshPage}>Reset</Button>
 
               </div>
             </Form>
-
-          </Card.Body>
-        </Card>
       </div>
 
 

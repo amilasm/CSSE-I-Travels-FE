@@ -30,8 +30,8 @@ const sidebarNavItems = [
         section: '/Report'
     },
     {
-        display: 'Fares',
-        icon: <i className='bx bx-receipt'></i>,
+        display: 'Payments',
+        icon: <i className='bx bx-box'></i>,
         to: '/t/Fares',
         section: '/Fares'
     },
@@ -67,26 +67,18 @@ const Sidebar = () => {
 
     return <div className='sidebar'>
         <div className="sidebar__logo">
-            Mass Travels
+        <img src="https://i.postimg.cc/x85twtVR/paper-airplane-travel-logo-260nw-562039321-copy.png" alt="logo" class="logo"/>
         </div>
         <div >
-        <div style={{ paddingBottom:'4vh',paddingLeft:'25vh',paddingBottom:'5vh'}}>
-        <Link
-                        style={{ textDecoration: 'none', color: 'white' }}
-                        to={{
-                            pathname: "/login",
-                        }}
-                    >
-            <Button variant='danger'>Log Out</Button></Link>
-            </div >
+        
 
         </div>
-        <div ref={sidebarRef} className="sidebar__menu">
+        <div ref={sidebarRef} className="sidebar__menu"style={{marginTop:"50%"}}>
             <div
                 ref={indicatorRef}
                 className="sidebar__menu__indicator"
                 style={{
-                    transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`
+                    transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`, fontSize:"40px"
                 }}
             ></div>
             {
@@ -102,7 +94,18 @@ const Sidebar = () => {
                         </div>
                     </Link>
                 ))
+                
             }
+            <div style={{marginTop:"20%" }}>
+                <center>
+            <Link
+                            style={{ textDecoration: 'none', color: 'white', backgroundColor:"#FC973A" }}
+                            to={{
+                                pathname: "/",
+                            }}
+                        >
+                <Button variant="secondary" >Logout</Button></Link>
+                </center></div >
         </div>
         
     </div>;

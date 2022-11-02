@@ -26,7 +26,7 @@ export default function Reports() {
 
     const generateorderReport = () => {
         const doc = new jsPDF();
-        const title = "Bus Routes Data Summary";
+        const title = "Bus Shedule Detail Report";
         doc.setFontSize(15);
         doc.setTextColor(128, 0, 0);
         doc.text(title, 100, 10, null, null, "center");
@@ -79,41 +79,27 @@ export default function Reports() {
             body: data,
         };
         doc.autoTable(contents);
-        doc.save("Bus_Data_Report.pdf");
+        doc.save("Bus Shedule Detail Report.pdf");
     };
 
 
 
     return (
         <div>
-            <div style={{ paddingLeft: '1vh' }} >
+            <div style={{ boxShadow: "0px 0px 12px rgba(0, 0, 0, 0.25)" }} >
                 
-                <center><h1>Reports</h1></center>
-                <div style={{ paddingLeft: '3vh', paddingTop: '5vh' }}>
-                    <Row>
-                        <Col>
-                        <Card style={{ width: '30rem'}}>
-                                    <img src="https://cdn.dribbble.com/users/2101543/screenshots/4733590/busem_przez_swiat.gif"/>
-                                </Card>
-                        </Col>
-                        <Col>
+                <center><h1 style={{fontWeight:"bold", paddingTop:"4vh"}}>Reports</h1>
+                <hr></hr>
+                <img style={{ paddingTop: "10%" }} src="https://i.postimg.cc/MppMHjXS/ezgif-com-gif-maker-1.gif" />
                         <div>
-                            <button type="button"
+                            <a type="button"
                                 id="downloadBtn"
                                 onClick={() => generateorderReport()}>
-                                <Card style={{ width: '30rem', height: '20rem', background: '#f01e2c' }}>
-                                    <div style={{ paddingTop: '7rem' }}>
-
-                                        <h1 style={{ color: 'white' }}>(PDF) Download Bus Trip Details Report</h1>
-                                    </div>
-                                </Card>
-                            </button>
+                                <img style={{ paddingTop: "5%", width:"50%" }} src="https://media.tenor.com/N30lxYthb7UAAAAC/download-now.gif" />
+                                <p>(Bus Shedule Detail Report)</p>
+                            </a>
                             </div>
-                        </Col>
-                       
-                    </Row>
-                </div>
-
+                            </center>
             </div>
         </div>
     );

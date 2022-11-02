@@ -109,18 +109,17 @@ function ViewShedule(props) {
             <div style={{ paddingLeft: "1vh", color: 'white' }}>
                 
             </div>
-            <div style={{ paddingLeft: '1vh', paddingRight: '7vh', paddingBottom: '2vh' }}>
-                <Card border="secondary">
-                    <div style={{ paddingBottom: "8vh", paddingTop: "1vh", paddingLeft: "8vh", paddingRight: "5vh" }}>
+            <div style={{ paddingLeft: '1vh', paddingRight: '7vh', paddingBottom: '2vh', paddingTop:"5vh" }}>
+                <Card>
+                    <div style={{ paddingBottom: "8vh", paddingTop: "1vh", paddingLeft: "8vh", paddingRight: "5vh" ,boxShadow: "0px 0px 12px rgba(0, 0, 0, 0.25)",overflowY: 'scroll', height:'800px'  }}>
                         <div style={{ paddingBottom: "5vh", paddingTop: "3vh", paddingLeft: "5vh", paddingRight: "5vh" }}>
-                            <h1 style={{ paddingLeft: "40%", paddingBottom: "3vh" }}>Analysis Report</h1>
-
-
+                            <h1 style={{ paddingLeft: "40%", paddingBottom: "3vh",fontWeight:"bold" }}>Shedule Details</h1>
+                            <hr></hr>
                             <div style={{ paddingleft: "10vh", paddingBottom: "1vh", paddingTop: "1vh" }} >
 
                                 <div style={{ paddingleft: "2vh", paddingBottom: "1vh", paddingTop: "1vh" }}>
                                     <div style={{ paddingBottom: "1vh", paddingTop: "1vh" }}>
-                                        <input type="text" placeholder="Search from 'Bus No' " className="mr-2"
+                                        <input type="text" placeholder="  Search Buses " className="mr-2" style={{borderRadius:"20px"}}
                                             onChange={(e) => {
                                                 setSearch(e.target.value);
                                             }} />

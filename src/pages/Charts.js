@@ -49,29 +49,20 @@ export default function Charts() {
         getbus();
     }, [])
 
-    //delete funtion
-    function onDelete(_id) {
-        console.log(_id);
-        axios.delete("http://localhost:8070/bustrip/" + _id).then((res) => {
-            alert('Deleted Successfully');
-            window.location.reload();
-        }).catch((err) => {
-            alert(err.message);
-        })
-    }
 
 
     return (
         <div>
+        <h2 style={{fontWeight:"bold",paddingTop: "0vh"}}>Dashboard</h2>
+        <hr></hr>
 
-
-            <div style={{ paddingLeft: '4vh', paddingTop: '1vh' }}>
+            <div style={{ paddingLeft: '4vh', paddingTop: '1vh'}}>
 
                 <Row>
                     <Col>
-                        <Card style={{ width: '35rem' }}>
+                        <Card style={{ width: '35rem',boxShadow: "0px 0px 12px rgba(0, 0, 0, 0.25)" }}>
 
-                            <div style={{ paddingLeft: '2vh', paddingTop: '2vh' }}>
+                            <div style={{paddingTop: '2vh',paddingRight: '2vh', paddingBottom:"1vh" }}>
                                 <div >
                                     <ResponsiveContainer width="100%" height={200}>
                                         <AreaChart data={bustrip}>
@@ -88,11 +79,11 @@ export default function Charts() {
                     <Col>
 
                         <Row>
-                            <div style={{ paddingBottom: '2vh', paddingTop: '1vh' }}>
+                            <div style={{ paddingBottom: '2vh', paddingTop: '0.5vh' }}>
 
                                 <Col>
-                                    <Card style={{ width: '25rem' }}>
-                                        <div style={{ paddingBottom: '2vh', paddingTop: '1vh', paddingLeft: '35%' }}>
+                                    <Card style={{ width: '25rem' ,backgroundImage: "url(https://i.postimg.cc/m2C3tY2w/diseno-web.gif)" }}>
+                                        <div style={{ paddingBottom: '2vh', paddingTop: '1vh', paddingLeft: '35%',boxShadow: "0px 0px 12px rgba(0, 0, 0, 0.25)" , fontWeight:"bold"}}>
 
                                             Total Customers: {passengercount} <br />
                                         </div>
@@ -102,8 +93,8 @@ export default function Charts() {
                             <Col>
                                 <div style={{ paddingBottom: '2vh', paddingTop: '1vh' }}>
 
-                                    <Card style={{ width: '25rem' }}>
-                                    <div style={{ paddingBottom: '2vh', paddingTop: '1vh', paddingLeft: '35%' }}>
+                                    <Card style={{ width: '25rem',backgroundImage: "url(https://cdn.dribbble.com/users/3593902/screenshots/6886578/bus-animation-1.gif)" }}>
+                                    <div style={{ paddingBottom: '2vh', paddingTop: '1vh', paddingLeft: '35%',boxShadow: "0px 0px 12px rgba(0, 0, 0, 0.25)", fontWeight:"bold" }}>
 
                                         Total Bus Trips: {bustripcount}<br />
                                         </div>
@@ -114,8 +105,8 @@ export default function Charts() {
                             <Col>
                                 <div style={{ paddingBottom: '2vh', paddingTop: '1vh' }}>
 
-                                    <Card style={{ width: '25rem' }}>
-                                    <div style={{ paddingBottom: '2vh', paddingTop: '1vh', paddingLeft: '35%' }}>
+                                    <Card style={{ width: '25rem' ,backgroundImage: "url(https://i.postimg.cc/HxZFDZt2/mobile-app.gif)" }}>
+                                    <div style={{ paddingBottom: '2vh', paddingTop: '1vh', paddingLeft: '35%',boxShadow: "0px 0px 12px rgba(0, 0, 0, 0.25)", fontWeight:"bold" }}>
 
                                         Total Fare : {total}
                                         </div>
@@ -124,15 +115,15 @@ export default function Charts() {
                             </Col>
                         </Row>
                     </Col>
-
-
                 </Row>
-                <div style={{ paddingLeft: '3vh', paddingTop: '5vh', paddingRight: '5vh' }}>
+                <br/>
+                <div style={{ paddingLeft: '3vh', paddingTop: '3vh', paddingRight: '5vh', lineHeight:"40px", boxShadow: "0px 0px 12px rgba(0, 0, 0, 0.25)",overflowY: 'scroll', height:'500px'}}>
                     <Row>
                         <div>
-                            <h6>Total Shedules</h6>
-                            <Table striped bordered hover size="sm" variant="light" >
-                                <thead>
+                            <h3 style={{fontWeight:"bold"}}>Total Shedules</h3>
+                            <br/>
+                            <Table striped bordered hover variant="light" >
+                                <thead >
 
                                     <tr>
                                         <th>Route No</th>
@@ -140,7 +131,6 @@ export default function Charts() {
                                         <th>To</th>
                                         <th>Time</th>
                                         <th>No Of Buses</th>
-                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -156,12 +146,6 @@ export default function Charts() {
                                                     <td>{bustrip.time}</td>
                                                     <td>{bustrip.noofbus}</td>
 
-
-                                                    <td>
-                                                        <Button variant="outline-danger" onClick={() => onDelete(bustrip._id)}><FaTrashAlt /></Button>
-
-                                                    </td>
-
                                                 </tr>
 
                                             );
@@ -170,21 +154,6 @@ export default function Charts() {
                                 </tbody>
 
                             </Table >
-
-                            <Link
-                        style={{ textDecoration: 'none', color: 'white' }}
-                        to={{
-                            pathname: "/viewshedule",
-                        }}
-                    >
-                            <Button variant="danger">Analysis Report</Button>
-                            </Link> {' '} <Link
-                        style={{ textDecoration: 'none', color: 'white' }}
-                        to={{
-                            pathname: "/Shedule",
-                        }}
-                    ><Button variant="danger"> Add Shedule</Button>
-                    </Link>
                         </div>
 
                     </Row>
