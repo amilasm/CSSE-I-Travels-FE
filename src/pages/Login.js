@@ -3,26 +3,38 @@ import { Row, Col, Card, Form, Button } from 'react-bootstrap';
 import axios from "axios";
 import './assets/css/login.css';
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login(props) {
     const [name, setname] = useState("");
     const [nic, setnic] = useState("");
     const [all, setall] = useState("");
+    const [islogged, setislogged] = useState(false);
+    const notify = () => toast("Login Succefully!");
+    const notifyerror = () => toast("Login Data Invalid!");
+    const notifydelete = () => toast("Error Occured!");
     function handleShow(e) {
         e.preventDefault();
 
+        let checklog = false;
         console.log(name);
         console.log(nic);
 
         setname(name);
         setnic(nic);
         for (let i = 0; i < all.length; i++) {
-            if (name == all[i].name && nic == all[i].nic) {
-                alert("Login Success !")
+            if (name == all[i].name && nic == all[i].nic && all[i].enabled == "Active") {
+                notify();
+                checklog = true;
+                localStorage.setItem("account_type", all[i].account_type)
                 window.location = './t'
 
             }
-            else(alert("Login Data is invalid !"))
+        }
+        console.log(checklog);
+        if (checklog === false){
+          notifyerror();
         }
         
 
@@ -37,7 +49,7 @@ export default function Login(props) {
                 console.log(res.data);
 
             }).catch((err) => {
-                alert(err.message);
+              notifydelete();
             })
         }
 
@@ -96,6 +108,18 @@ export default function Login(props) {
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
+<ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                />
 
         </div>
     );

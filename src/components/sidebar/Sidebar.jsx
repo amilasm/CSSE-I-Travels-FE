@@ -9,37 +9,44 @@ const sidebarNavItems = [
         display: 'Dashboard',
         icon: <i className='bx bx-home'></i>,
         to: '/t',
-        section: ''
+        section: '',
+        account_type:"All"
     },
    
     {
         display: 'Add Shedule',
         icon: <i className='bx bx-calendar'></i>,
         to: '/t/Shedule',
-        section: '/Shedule'    },
+        section: '/Shedule',
+        account_type:"Manager"    },
+        
     {
         display: 'View Shedule',
         icon: <i className='bx bx-task'></i>,
         to: '/t/viewshedule',
-        section: '/viewshedule'
+        section: '/viewshedule',
+        account_type:"Manager"
     },
     {
         display: 'Report',
         icon: <i className='bx bx-book'></i>,
         to: '/t/Report',
-        section: '/Report'
+        section: '/Report',
+        account_type:"All"
     },
     {
         display: 'Payments',
         icon: <i className='bx bx-box'></i>,
         to: '/t/Fares',
-        section: '/Fares'
+        section: '/Fares',
+        account_type:"Manager"
     },
     {
         display: 'User',
         icon: <i className='bx bx-receipt'></i>,
         to: '/t/user',
-        section: '/user'
+        section: '/user',
+        account_type:"Admin"
     },
 ]
 
@@ -66,24 +73,25 @@ const Sidebar = () => {
     }, [location]);
 
     return <div className='sidebar'>
-        <div className="sidebar__logo">
+        <Link to={"/t"}><div className="sidebar__logo">
         <img src="https://i.postimg.cc/x85twtVR/paper-airplane-travel-logo-260nw-562039321-copy.png" alt="logo" class="logo"/>
-        </div>
+        </div></Link>
         <div >
         
 
         </div>
         <div ref={sidebarRef} className="sidebar__menu"style={{marginTop:"50%"}}>
-            <div
+            {/* <div
                 ref={indicatorRef}
                 className="sidebar__menu__indicator"
                 style={{
                     transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`, fontSize:"40px"
                 }}
-            ></div>
+            ></div> */}
             {
                 sidebarNavItems.map((item, index) => (
-                    <Link to={item.to} key={index}>
+                    
+                    <Link to={item.to} key={index} hidden = {item.account_type != localStorage.getItem("account_type") && item.account_type != "All"}>
                         <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
                             <div className="sidebar__menu__item__icon">
                                 {item.icon}

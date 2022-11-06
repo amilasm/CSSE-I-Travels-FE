@@ -3,14 +3,18 @@ import { Row, Col, Card, Button, Form } from 'react-bootstrap';
 import axios from "axios";
 import './assets/css/login.css';
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Register(props) {
     const [name, setname] = useState("");
     const [nic, setnic] = useState("");
     const [dob, setdob] = useState(" ");
     const [address, setaddress] = useState(" ");
-    const [city, setcity] = useState(" ");
     const [postalcode, setpostalcode] = useState(" ");
     const [contact, setcontact] = useState(" ");
+    const notify = () => toast("User Register Succefull!");
+    const notifyerror = () => toast("User Register Unsuccefull!");
    
     function sendData(e) {
 
@@ -23,7 +27,6 @@ export default function Register(props) {
           dob,
           address,
           postalcode,
-          city, 
           contact
         }
     
@@ -33,15 +36,14 @@ export default function Register(props) {
           setnic('');
           setdob('');
           setaddress('');
-          setcity('');
           setpostalcode('');
           setcontact('');
     
-          alert("User Successfully Registered  ..");
+          notify();
           window.location = './'
     
         }).catch((err) => {
-          alert("error");
+          notifyerror();
         })
       }
 
@@ -134,7 +136,18 @@ export default function Register(props) {
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 
-
+<ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                />
 
         </div>
     );

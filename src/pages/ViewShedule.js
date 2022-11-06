@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Card, Modal, Form, Row, Col } from "react-bootstrap";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 
 function ViewShedule(props) {
@@ -20,6 +22,9 @@ function ViewShedule(props) {
     const [price, setprice] = useState(" ");
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const notify = () => toast("Shedule Updated Succefully!");
+    const notifyerror = () => toast("Error occured!");
+    const notifydelete = () => toast("Shedule Deleted Succefully!");
     const handleShow = (_id, busno,
         routeno,
         capacity,
@@ -60,10 +65,10 @@ function ViewShedule(props) {
     function onDelete(_id) {
         console.log(_id);
         axios.delete("http://localhost:8070/bustrip/" + _id).then((res) => {
-            alert('Deleted Successfully');
+            notifydelete();
             window.location.reload();
         }).catch((err) => {
-            alert(err.message);
+            notifyerror();
         })
     }
 
@@ -95,11 +100,11 @@ function ViewShedule(props) {
             setto('');
             setnoofbus('');
             setprice('');
-
-            alert("Updated Successfully");
+            handleClose();
+            notify();
             window.location.reload();
         }).catch((err => {
-            alert(err)
+            notifyerror();
         }))
 
 
@@ -209,21 +214,21 @@ function ViewShedule(props) {
                             <Col>
                                 <div >
                                     <Form.Label>Bus No :</Form.Label>
-                                    <Form.Control placeholder="busno"
+                                    <Form.Control placeholder="busno" type="number"
                                         value={busno}
                                         onChange={(e) => setbusno(e.target.value)} />
                                 </div>
 
                                 <div >
                                     <Form.Label>Rout No : </Form.Label >
-                                    <Form.Control placeholder="routeno"
+                                    <Form.Control placeholder="routeno" type="number" 
                                         value={routeno}
                                         onChange={(e) => setrouteno(e.target.value)} />
                                 </div>
 
                                 <div >
                                     <Form.Label>Capacity :</Form.Label >
-                                    <Form.Control placeholder="capacity"
+                                    <Form.Control placeholder="capacity" type="number" min={0}
                                         value={capacity}
                                         onChange={(e) => setcapacity(e.target.value)} />
                                 </div>
@@ -235,9 +240,9 @@ function ViewShedule(props) {
                                         <Form.Select aria-label="Default select example" value={type}
                                         onChange={(e) => settype(e.target.value)} >
                                         <option>{type}</option>
-                                        <option value="super-Luxury">super-Luxury</option>
+                                        <option value="super-Luxury">Super-Luxury</option>
                                         <option value="Luxury">Luxury</option>
-                                        <option value="semi-Luxury">semi-Luxury</option>
+                                        <option value="semi-Luxury">Semi-Luxury</option>
                                         <option value="Normal-Service">Normal-Service</option>
 
                                     </Form.Select>
@@ -254,7 +259,7 @@ function ViewShedule(props) {
                             <Col>
                                 <div >
                                     <Form.Label>Time : </Form.Label >
-                                    <Form.Control placeholder="time"
+                                    <Form.Control placeholder="time" type="time"
                                         value={time}
                                         onChange={(e) => settime(e.target.value)} />
                                 </div>
@@ -286,16 +291,14 @@ function ViewShedule(props) {
                                 </div>
                                 <div >
                                     <Form.Label>No Of Bus: </Form.Label >
-                                    <Form.Control placeholder="noofbus"
-                                        type='text'
+                                    <Form.Control placeholder="noofbus" type="number" min={0}
                                         value={noofbus}
                                         onChange={(e) => setnoofbus(e.target.value)} />
                                 </div>
 
                                 <div >
                                     <Form.Label>Price: </Form.Label >
-                                    <Form.Control placeholder="price"
-                                        type='text'
+                                    <Form.Control placeholder="price" type="number" min={0}
                                         value={price}
                                         onChange={(e) => setprice(e.target.value)} />
                                 </div>
@@ -314,6 +317,18 @@ function ViewShedule(props) {
                 </Modal.Body>
 
             </Modal>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                />
         </div>
 
 

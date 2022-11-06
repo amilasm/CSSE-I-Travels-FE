@@ -2,6 +2,8 @@ import React, { useState } from "react"
 
 import { Card, Button,  Form } from 'react-bootstrap';
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Addshedule() {
@@ -16,6 +18,8 @@ export default function Addshedule() {
   const [to, setto] = useState(" ");
   const [noofbus, setnoofbus] = useState(" ");
   const [price, setprice] = useState(" ");
+  const notify = () => toast("Shedule Added Succefully!");
+  const notifyerror = () => toast("Shedule Adding Unsuccefully!");
 
   function sendData(e) {
 
@@ -46,11 +50,11 @@ export default function Addshedule() {
       setnoofbus('');
       setprice('');
 
-      alert("Shedule added ..");
+      notify();
       window.location = './viewshedule'
 
     }).catch((err) => {
-      alert("error");
+      notifyerror();
     })
   }
   function refreshPage() {
@@ -107,7 +111,7 @@ export default function Addshedule() {
                   <Form.Control type="number"
                     onChange={(e) => setnoofbus(e.target.value)}
 
-                    placeholder=" Enter No Of Buses"  required/>
+                    placeholder=" Enter No Of Buses" min={0}  required/>
                 </Form.Group>
               </div>
               <br/>
@@ -118,8 +122,18 @@ export default function Addshedule() {
               </div>
             </Form>
       </div>
-
-
+      <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                />
     </div>
   );
 }
